@@ -16,7 +16,7 @@ public class ResourceManager : MonoBehaviour
         }
         minstance = this;
     }
-    public GameObject LoadBall(string sPath)
+    public GameObject LoadObject(string sPath)
     {
         Object o = Resources.Load(sPath);
         if (o == null)
