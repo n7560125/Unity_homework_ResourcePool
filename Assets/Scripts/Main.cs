@@ -7,31 +7,35 @@ public class Main : MonoBehaviour
     static Main instance;
     static public Main Instance() { return instance; }
     List<GameObject> Wap = new List<GameObject>();
-    List<Vector3> Vec = new List<Vector3>();
+
     private void Awake()
     {
         instance = this;
+        for (int i = 0; i < 5; i++)
+        {
+            Wap.Add(ResourceManager.Instance().LoadObject("WayPoint"));
+            Wap[i].transform.position = new Vector3(-9 + i * 4.0f, 0.5f, 5.0f);
+            Debug.Log(Wap[i].transform.position);
+            //if (i > 0)
+            //{
+            //    Vec.Add(Wap[i - 1].transform.position - Wap[i].transform.position);
+            //}
+        }
+        for (int i = 5; i < 10; i++)
+        {
+            Wap.Add(ResourceManager.Instance().LoadObject("WayPoint"));
+            Wap[i].transform.position = new Vector3(-9 + (i - 5) * 4.0f, 0.5f, -5.0f);
+            Debug.Log(Wap[i].transform.position);
+            //if (i > 5)
+            //{
+            //    Vec.Add(Wap[i - 1].transform.position - Wap[i].transform.position);
+            //}
+        }
     }
     // Start is called before the first frame update
     void Start()
-
     {
-        for(int i =0; i < 5; i++)
-        {
-            Wap.Add(ResourceManager.Instance().LoadObject("WayPoint"));
-            Debug.Log(Wap[i].GetType());
-            Wap[i].transform.position = new Vector3(i * 2.0f, 0.0f, 0.0f);
-            if (i > 0)
-            {
-                //Vec.Add(Wap[i-1].transform.position-Wap)
-            }
-        }
-        for(int i =0; i <5; i++)
-        {
-            Wap.Add(ResourceManager.Instance().LoadObject("WayPoint"));
-            Debug.Log(Wap[i+5].GetType());
-            Wap[i+5].transform.position = new Vector3(i * 2.0f, 0.0f, 3.0f);
-        }
+
     }
 
     // Update is called once per frame
@@ -40,7 +44,12 @@ public class Main : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             GameObject go = ResourceManager.Instance().LoadObject("RedBall");
+            
         }
         
+    }
+    public GameObject GetWayPoint(int i)
+    {
+        return Wap[i];
     }
 }
